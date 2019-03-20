@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import re
+import sys
 from base64 import b64encode
 import xml.etree.ElementTree as ET
 from six import text_type
@@ -61,7 +62,8 @@ class Session(object):
         """converts a Powershell CLIXML message to a more human readable string
         """
         # TODO prepare unit test, beautify code
-        msg = msg.decode('utf-8')
+        if sys.version_info[:2] == (3, 7):
+            msg = msg.decode('utf-8')
         # if the msg does not start with this, return it as is
         if msg.startswith("b#< CLIXML"):
             # for proper xml, we need to remove the CLIXML part
@@ -89,19 +91,16 @@ class Session(object):
                 # otherwise the original error message will be used
                 if len(new_msg):
                     # remove leading and trailing whitespace while we are here
-                    msg = new_msg.strip()
+                    msg = new_msg.strip().encode('utf-8')
         return msg
 
     def _strip_namespace(self, xml):
         """strips any namespaces from an xml string"""
-        try:
-            p = re.compile("xmlns=*[\"\"][^\"\"]*[\"\"]")
-            allmatches = p.finditer(xml)
-            for match in allmatches:
-                xml = xml.replace(match.group(), "")
-            return xml
-        except Exception as e:
-            raise Exception(e)
+        p = re.compile(b"xmlns=*[\"\"][^\"\"]*[\"\"]")
+        allmatches = p.finditer(xml)
+        for match in allmatches:
+            xml = xml.replace(match.group(), b"")
+        return xml
 
     @staticmethod
     def _build_url(target, transport):
