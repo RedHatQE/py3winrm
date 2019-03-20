@@ -35,7 +35,7 @@ class Session(object):
 
     def run_cmd(self, command, args=()):
         # TODO optimize perf. Do not call open/close shell every time
-        shell_id = self.protocol.open_shell()
+        shell_id = self.protocol.open_shell(codepage=65001) # utf-8
         command_id = self.protocol.run_command(shell_id, command, args)
         rs = Response(self.protocol.get_command_output(shell_id, command_id))
         self.protocol.cleanup_command(shell_id, command_id)
@@ -61,8 +61,9 @@ class Session(object):
         """converts a Powershell CLIXML message to a more human readable string
         """
         # TODO prepare unit test, beautify code
+        msg = msg.decode('utf-8')
         # if the msg does not start with this, return it as is
-        if msg.startswith("b#< CLIXML\r\n"):
+        if msg.startswith("b#< CLIXML"):
             # for proper xml, we need to remove the CLIXML part
             # (the first line)
             msg_xml = msg[11:]
