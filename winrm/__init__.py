@@ -67,8 +67,6 @@ class Session(object):
         if len(rs.std_err):
             # if there was an error message, clean it it up and make it human
             # readable
-            if not isinstance(rs.std_err, text_type):
-                rs.std_err = rs.std_err.decode('utf-8')
             rs.std_err = self._clean_error_msg(rs.std_err)
 
         return rs
@@ -77,7 +75,7 @@ class Session(object):
         """converts a Powershell CLIXML message to a more human readable string
         """
         # TODO prepare unit test, beautify code
-        if sys.version_info[:2] == (3, 7):
+        if sys.version_info[:2] == (3, 7) and not isinstance(msg, text_type):
             msg = msg.decode('utf-8')
         # if the msg does not start with this, return it as is
         if msg.startswith("b#< CLIXML"):
