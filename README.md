@@ -1,31 +1,28 @@
-# pywinrm 
+# py3winrm 
 pywinrm is a Python client for the Windows Remote Management (WinRM) service.
 It allows you to invoke commands on target Windows machines from any machine
 that can run Python.
-
+ 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/diyan/pywinrm/blob/master/LICENSE)
-[![Travis Build](https://travis-ci.org/diyan/pywinrm.svg)](https://travis-ci.org/diyan/pywinrm)
-[![AppVeyor Build](https://ci.appveyor.com/api/projects/status/github/diyan/pywinrm?svg=true)](https://ci.appveyor.com/project/diyan/pywinrm) [![Coverage](https://coveralls.io/repos/diyan/pywinrm/badge.svg)](https://coveralls.io/r/diyan/pywinrm)
-[![PyPI](https://img.shields.io/pypi/dm/pywinrm.svg)](https://pypi.python.org/pypi/pywinrm)
+
 
 WinRM allows you to perform various management tasks remotely. These include, 
 but are not limited to: running batch scripts, powershell scripts, and fetching 
 WMI variables.
 
-Used by [Ansible](https://www.ansible.com/) for Windows support.
 
 For more information on WinRM, please visit
 [Microsoft's WinRM site](http://msdn.microsoft.com/en-us/library/aa384426.aspx).
 
 ## Requirements
 * Linux, Mac OS X or Windows
-* CPython 2.6-2.7, 3.3-3.5 or PyPy2
+* CPython 2.7, 3.6-3.7 or PyPy2
 * [requests-kerberos](http://pypi.python.org/pypi/requests-kerberos) and [requests-credssp](https://github.com/jborean93/requests-credssp) is optional
 
 ## Installation
 ### To install pywinrm with support for basic, certificate, and NTLM auth, simply
 ```bash
-$ pip install pywinrm
+$ pip install py3winrm
 ```
 
 ### To use Kerberos authentication you need these optional dependencies
@@ -33,11 +30,11 @@ $ pip install pywinrm
 ```bash
 # for Debian/Ubuntu/etc:
 $ sudo apt-get install gcc python-dev libkrb5-dev
-$ pip install pywinrm[kerberos]
+$ pip install py3winrm[kerberos]
 
 # for RHEL/CentOS/etc:
 $ sudo yum install gcc python-devel krb5-devel krb5-workstation python-devel
-$ pip install pywinrm[kerberos]
+$ pip install py3winrm[kerberos]
 ```
 
 ### To use CredSSP authentication you need these optional dependencies
@@ -45,11 +42,11 @@ $ pip install pywinrm[kerberos]
 ```bash
 # for Debian/Ubuntu/etc:
 $ sudo apt-get install gcc python-dev libssl-dev
-$ pip install pywinrm[credssp]
+$ pip install py3winrm[credssp]
 
 # for RHEL/CentOS/etc:
 $ sudo yum install gcc python-devel openssl-devel
-$ pip install pywinrm[credssp]
+$ pip install py3winrm[credssp]
 ```
 
 ## Example Usage
@@ -213,6 +210,11 @@ Enable WinRM CredSSP authentication. This allows double hop support so you can a
 Enable-WSManCredSSP -Role Server -Force
 Set-Item -Path "WSMan:\localhost\Service\Auth\CredSSP" -Value $true
 ```
+
+This is clone of https://github.com/diyan/pywinrm.git 
+Since original repo looks dead. It don't accept PRs or solve submitted issues. 
+We had to clone it and push under another name in order to fix collected issues.
+
 
 ### Contributors (alphabetically)
 
