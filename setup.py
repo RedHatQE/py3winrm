@@ -1,7 +1,7 @@
 from setuptools import setup
 
-__version__ = '0.3.1.dev0'
-project_name = 'pywinrm'
+__version__ = '0.0.1'
+project_name = 'py3winrm'
 
 # PyPi supports only reStructuredText, so pandoc should be installed
 # before uploading package
@@ -19,12 +19,13 @@ setup(
     keywords='winrm ws-man devops ws-management'.split(' '),
     author='Alexey Diyan',
     author_email='alexey.diyan@gmail.com',
-    url='http://github.com/diyan/pywinrm/',
+    url='https://github.com/RedHatQE/py3winrm/',
     license='MIT license',
     packages=('winrm', 'winrm.tests'),
     package_data={'winrm.tests': ['*.ps1']},
     install_requires=['xmltodict', 'requests>=2.9.1', 'requests_ntlm>=0.3.0', 'six'],
-    extras_require = dict(kerberos=['requests-kerberos>=0.10.0'], credssp=['requests-credssp>=0.0.1']),
+    extras_require=dict(kerberos=['requests-kerberos>=0.10.0'],
+                        credssp=['requests-credssp>=0.0.1']),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',
@@ -34,13 +35,10 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: System :: Clustering',
