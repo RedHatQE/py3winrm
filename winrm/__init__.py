@@ -75,7 +75,7 @@ class Session(object):
         """converts a Powershell CLIXML message to a more human readable string
         """
         # TODO prepare unit test, beautify code
-        if sys.version_info[:2] == (3, 7) and not isinstance(msg, text_type):
+        if sys.version_info[:2] >= (3, 6) and not isinstance(msg, text_type):
             msg = msg.decode('utf-8')
         # if the msg does not start with this, return it as is
         if msg.startswith("b#< CLIXML"):
